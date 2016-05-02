@@ -5,6 +5,8 @@ var app = angular.module('myApp', []);
 app.controller('mainCtrl', function($scope, $filter) {
     console.log('mainCtrl!');
 
+    var orderBy = $filter('orderBy');
+
     $scope.products = [
 
         {
@@ -36,7 +38,12 @@ app.controller('mainCtrl', function($scope, $filter) {
         }
 
     ];
-
+    $scope.order = function(predicate) {
+      $scope.predicate = predicate;
+      $scope.reverse = ($scope.predicate === predicate) ? !$scope.reverse : false;
+      $scope.products = orderBy($scope.products, predicate, $scope.reverse);
+    };
+    $scope.order('id', true);
 
 
     // $scope.addProduct = () => {

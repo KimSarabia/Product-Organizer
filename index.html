@@ -8,6 +8,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
     <script src="main.js" charset="utf-8"></script>
 </head>
+
 <body ng-app='myApp' ng-controller='mainCtrl'>
     <div class="container">
         <div>
@@ -54,28 +55,38 @@
     <table class="table">
       <thead>
         <tr>
-          <th>Name</th>
+          <!-- <th>ID</th> -->
+          <th>ID</th>
+
+          <th>
+            <button ng-click="order('name')">Name</button>
+            <span class="sortorder" ng-show="predicate === 'name'" ng-class="{reverse:reverse}"></span>
+          </th>
           <th>Author</th>
           <th>Description</th>
           <th>Amount</th>
           <th>Category</th>
+
+          <th>SELECT</th>
           <th>Delete</th>
         </tr>
       </thead>
       <tbody>
-        <tr ng-repeat='product in products  | filter:search | filter: new_search'>
-          <td>
-            {{product.id}} <input type="checkbox" ng-model="product.checked" ng-click="checkedIndex(product)"> </td>
-          </td>
+        <tr ng-repeat='product in products  | orderBy:soryType:sortReverse | filter:search | filter: new_search'>
+          <td>{{product.id}}</td>
           <td>{{product.name}}</td>
           <td>{{product.author}}</td>
           <td>{{product.description}}</td>
           <td>{{product.amount}}</td>
           <td>{{product.category}}</td>
 
+<td>
+  <input type="checkbox" ng-model="product.checked" ng-click="checkedIndex(product)">
+</td>
           <td>
           <button ng-click="remove($index)">x </button>
           </td>
+
 
         </tr>
       </tbody>
