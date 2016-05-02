@@ -37,6 +37,10 @@
                 <label>Category</label>
                 <input type="text" class="form-control" ng-model ="new_category">
             </div>
+            <div class="form-group">
+                <label>Image URL</label>
+                <input type="url" class="form-control" ng-model ="new_image" ng-src={{new_image}}>
+            </div>
             <button class="btn btn-primary" ng-click="addProduct()">Add Product</button>
         </div>
     </div>
@@ -56,17 +60,29 @@
       <thead>
         <tr>
           <!-- <th>ID</th> -->
-          <th>ID</th>
+          <th>
+            <button ng-click="order('id')">ID</button>
+            <span class="sortorder" ng-show="predicate === 'id'" ></span>
+          </th>
 
           <th>
             <button ng-click="order('name')">Name</button>
             <span class="sortorder" ng-show="predicate === 'name'" ng-class="{reverse:reverse}"></span>
           </th>
-          <th>Author</th>
+          <th>
+            <button ng-click="order('author')">Author</button>
+            <span class="sortorder" ng-show="predicate === 'author'" ng-class="{reverse:reverse}"></span>
+          </th>
           <th>Description</th>
-          <th>Amount</th>
-          <th>Category</th>
-
+          <th>
+              <button ng-click="order('amount')">Amount</button>
+              <span class="sortorder" ng-show="predicate === 'amount'" ng-class="{reverse:reverse}"></span>
+          </th>
+          <th>
+              <button ng-click="order('category')">Category</button>
+              <span class="sortorder" ng-show="predicate === 'category'" ng-class="{reverse:reverse}"></span>
+          </th>
+          <th>Image</th>
           <th>SELECT</th>
           <th>Delete</th>
         </tr>
@@ -79,6 +95,8 @@
           <td>{{product.description}}</td>
           <td>{{product.amount}}</td>
           <td>{{product.category}}</td>
+          <td>{{product.image}}</td>
+
 
 <td>
   <input type="checkbox" ng-model="product.checked" ng-click="checkedIndex(product)">

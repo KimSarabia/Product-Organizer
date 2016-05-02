@@ -58,7 +58,9 @@ app.controller('mainCtrl', function($scope, $filter) {
             author: $scope.new_author,
             description: $scope.new_description,
             amount: $scope.new_amount,
-            category: $scope.new_category
+            category: $scope.new_category,
+            image: $scope.new_image
+
         });
         $scope.new_id = "";
         $scope.new_name = "";
@@ -66,6 +68,8 @@ app.controller('mainCtrl', function($scope, $filter) {
         $scope.new_description = "";
         $scope.new_amount = "";
         $scope.new_category = "";
+        $scope.new_image = "";
+
     };
 
     $scope.checkedIndexes = [];
