@@ -12,25 +12,29 @@
     <div class="container">
         <div>
             <h3>New Product</h1>
+              <div class="form-group">
+                  <label>ID</label>
+                  <input type="number" class="form-control" placeholder="ID" ng-model = "new_id">
+              </div>
             <div class="form-group">
                 <label>Name</label>
-                <input type="text" class="form-control" placeholder="Name" ng-model = "newProduct.name">
+                <input type="text" class="form-control" placeholder="Name" ng-model = "new_name">
             </div>
             <div class="form-group">
                 <label>Author</label>
-                <input type="text" class="form-control" placeholder="Author" ng-model = "newProduct.author">
+                <input type="text" class="form-control" placeholder="Author" ng-model = "new_author">
             </div>
             <div class="form-group">
                 <label>Description</label>
-                <input type="text" class="form-control" placeholder="Description" ng-model = "newProduct.description">
+                <input type="text" class="form-control" placeholder="Description" ng-model = "new_description">
             </div>
             <div class="form-group">
-                <label>Price</label>
-                <input type="number" class="form-control" ng-model ="newProduct.amount">
+                <label>Amount</label>
+                <input type="number" class="form-control" ng-model ="new_amount">
             </div>
             <div class="form-group">
                 <label>Category</label>
-                <input type="text" class="form-control" ng-model ="newProduct.category">
+                <input type="text" class="form-control" ng-model ="new_category">
             </div>
             <button class="btn btn-primary" ng-click="addProduct()">Add Product</button>
         </div>
@@ -43,31 +47,36 @@
       </div>
     </div>
 
+    <div>
+      <pre><strong>SELECTED:</strong> {{ selectedProducts() | json }}</pre>
+    </div>
+
     <table class="table">
       <thead>
         <tr>
           <th>Name</th>
           <th>Author</th>
           <th>Description</th>
-          <th>Price</th>
+          <th>Amount</th>
           <th>Category</th>
           <th>Delete</th>
         </tr>
       </thead>
       <tbody>
-        <tr ng-repeat='product in products  | filter:searchFilter | orderBy:"name" track by $index'>
+        <tr ng-repeat='product in products  | filter:search | filter: new_search'>
+          <td>
+            {{product.id}} <input type="checkbox" ng-model="product.checked" ng-click="checkedIndex(product)"> </td>
+          </td>
           <td>{{product.name}}</td>
           <td>{{product.author}}</td>
           <td>{{product.description}}</td>
           <td>{{product.amount}}</td>
           <td>{{product.category}}</td>
+
           <td>
-            <td>
-            <button type="button" class="btn btn-danger btn-sm" ng-click="removeProduct($index)">
-            <span class="glyphicon glyphicon-remove"></span>
-            </button>
-            </td>
+          <button ng-click="remove($index)">x </button>
           </td>
+
         </tr>
       </tbody>
     </table>
