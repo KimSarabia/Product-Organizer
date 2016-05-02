@@ -88,7 +88,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr ng-repeat='product in products  | orderBy:soryType:sortReverse | filter:search | filter: new_search'>
+        <tr ng-repeat='product in products  | orderBy:sortType:sortReverse | filter:searchFilter'>
           <td>{{product.id}}</td>
           <td>{{product.name}}</td>
           <td>{{product.author}}</td>
