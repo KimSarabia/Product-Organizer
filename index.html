@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>PRODUCT LIST</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+    <script src="main.js" charset="utf-8"></script>
+</head>
+<body ng-app='myApp' ng-controller='mainCtrl'>
+    <div class="container">
+        <div>
+            <h3>New Product</h1>
+            <div class="form-group">
+                <label>Name</label>
+                <input type="text" class="form-control" placeholder="Name" ng-model = "newProduct.name">
+            </div>
+            <div class="form-group">
+                <label>Author</label>
+                <input type="text" class="form-control" placeholder="Author" ng-model = "newProduct.author">
+            </div>
+            <div class="form-group">
+                <label>Description</label>
+                <input type="text" class="form-control" placeholder="Description" ng-model = "newProduct.description">
+            </div>
+            <div class="form-group">
+                <label>Price</label>
+                <input type="number" class="form-control" ng-model ="newProduct.amount">
+            </div>
+            <div class="form-group">
+                <label>Category</label>
+                <input type="text" class="form-control" ng-model ="newProduct.category">
+            </div>
+            <button class="btn btn-primary" ng-click="addProduct()">Add Product</button>
+        </div>
+    </div>
+
+    <div>
+      <div class="form-group">
+          <label>Search</label>
+          <input type="text" class="form-control" placeholder="Search" ng-model = "searchFilter">
+      </div>
+    </div>
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Author</th>
+          <th>Description</th>
+          <th>Price</th>
+          <th>Category</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat='product in products  | filter:searchFilter | orderBy:"name" track by $index'>
+          <td>{{product.name}}</td>
+          <td>{{product.author}}</td>
+          <td>{{product.description}}</td>
+          <td>{{product.amount}}</td>
+          <td>{{product.category}}</td>
+          <td>
+            <td>
+            <button type="button" class="btn btn-danger btn-sm" ng-click="removeProduct($index)">
+            <span class="glyphicon glyphicon-remove"></span>
+            </button>
+            </td>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+</body>
+</html>
